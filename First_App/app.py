@@ -3,11 +3,11 @@ import requests
 
 def main():
     menu = ['Home',"About"]
-    choice = st.sidebar.selectbox('Menu', menu)
+    Nav_Sel = st.sidebar.selectbox('Menu', menu)
 
     st.title("AllJobs - Job Agreggator")
 
-    if choice == "Home":
+    if Nav_Sel == "Home":
         st.subheader('Home')
 
     else:

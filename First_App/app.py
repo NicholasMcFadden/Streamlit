@@ -27,6 +27,10 @@ def main():
             st.title('Currency')
             st.selectbox('Pick ', ['', 'dogs'])
 
+        with col2:
+            st.subheader('Currency History')
+
+st.selectbox('Pick one', ['cats', 'dogs'])
 
 
 

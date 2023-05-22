@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import numpy as np
 
-key = 
+
 
 
 def main():
@@ -32,9 +32,11 @@ def main():
         with col2:
             st.subheader('Currency History')
 
+         
+
             # st.dataframe()
 
-            parameters = {"api_key": key, "format": "json",'from':'EUR','to':'GBP','amount':10}
+            parameters = {"api_key":st.secrets["db_password"], "format": "json"}
 
             url = "https://api.getgeoapi.com/v2/currency/convert"
 

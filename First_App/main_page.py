@@ -5,7 +5,7 @@ from streamlit_lottie import st_lottie
 import pandas as pd
 import numpy as np
 
-from helpers import flatten_json,load_lottiefile
+from helpers import flatten_json,load_lottiefile,load_lottieurl
 
 def main_page():
     st.markdown("# Main page 🎈")

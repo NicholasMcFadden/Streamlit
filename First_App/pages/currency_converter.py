@@ -1,19 +1,34 @@
 import streamlit as st
+from streamlit_lottie import st_lottie
 import requests
-
 import pandas as pd
 import numpy as np
 
-import helpers
+from helpers import flatten_json,load_lottiefile
 
 st.sidebar.markdown("# Currency $ => €")
+
+lottie_img = load_lottiefile('media\cur_exchange_lottie.json')
+
+st_lottie(lottie_img,
+          speed=.95,
+          reverse=False,
+          loop=True,
+          quality="low",
+          height=225,
+          width=None,
+          key=None,
+          )
+
 
 st.title('Currency Converter')
 
 st.write('''Currency Conversion Rates from Currency API: 
         https://currency.getgeoapi.com/''')
 
-col1,col2 = st.columns([1,3])
+
+
+col1,col2 = st.columns([2,4])
 
 with col1:
 
@@ -61,13 +76,13 @@ with col2:
 
     # st.write(data_ext)
 
-    flat_data = helpers.flatten_json(data_ext)
+    flat_data = flatten_json(data_ext)
 
     conv_df = pd.DataFrame(flat_data,columns=flat_data.keys(),index=['API Response:'])
 
     conv_df_t = conv_df.transpose()
 
-    st.write(conv_df_t)
+    st.table(conv_df_t)
     
     st.write('API JSON Response: ',data_ext)
 

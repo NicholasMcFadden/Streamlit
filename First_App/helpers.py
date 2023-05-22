@@ -1,3 +1,5 @@
+import json 
+
 def flatten_json(y):
     out = {}
 
@@ -15,3 +17,8 @@ def flatten_json(y):
 
     flatten(y)
     return out
+
+
+def load_lottiefile(filepath: str):
+    with open(filepath,'r') as f:
+        return json.load(f)

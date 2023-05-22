@@ -4,7 +4,7 @@ import requests
 import pandas as pd
 import numpy as np
 
-key = "6b49ba5510ccf54441a7af0498a76b563cc3a8d8"
+key = 
 
 
 def main():
@@ -44,11 +44,7 @@ def main():
             
             
 
-            # GET: https://api.getgeoapi.com/v2/currency/convert
-            # ?api_key=6b49ba5510ccf54441a7af0498a76b563cc3a8d8
-            # &from=EUR
-            # &to=GBP
-            # &amount=10
+  
            
 
 

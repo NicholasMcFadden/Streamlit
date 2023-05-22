@@ -4,22 +4,34 @@ import requests
 import pandas as pd
 import numpy as np
 
-from helpers import flatten_json,load_lottiefile
+from helpers import flatten_json,load_lottiefile,load_lottieurl
 
 st.sidebar.markdown("# Currency $ => €")
 
-lottie_img = load_lottiefile('media\cur_exchange_lottie.json')
+lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
 
-st_lottie(lottie_img,
-          speed=.95,
-          reverse=False,
-          loop=True,
-          quality="low",
-          height=225,
-          width=None,
-          key=None,
-          )
+st_lottie(lottie_file,
+        speed=.95,
+        reverse=False,
+        loop=True,
+        quality="low",
+        height=225,
+        width=None,
+        key=None,
+        )                            
 
+
+# lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
+
+# st_lottie(lottie_url,
+#           speed=.95,
+#           reverse=False,
+#           loop=True,
+#           quality="low",
+#           height=225,
+#           width=None,
+#           key=None,
+#           )
 
 st.title('Currency Converter')
 
@@ -28,8 +40,7 @@ st.write('''Currency Conversion Rates from Currency API:
 
 
 
-col1,col2 = st.columns([2,4])
-
+col1,col2,col3 = st.columns([3,1,6])
 with col1:
 
     st.subheader('Convert')
@@ -59,9 +70,34 @@ with col1:
 
     end_pos = [key for key, val in cur_list.items() if val == end_cur]
     
-                                
+    st.markdown('##\n##')
 
-with col2:
+    # lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
+
+    # st_lottie(lottie_file,
+    #       speed=.95,
+    #       reverse=False,
+    #       loop=True,
+    #       quality="low",
+    #       height=225,
+    #       width=None,
+    #       key=None,
+    #       ) 
+    lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
+
+  
+
+    st_lottie(lottie_url,
+          speed=.95,
+          reverse=False,
+          loop=True,
+          quality="low",
+          height=225,
+          width=None,
+          key=None,
+          )                           
+
+with col3:
 
     st.subheader('Currency Exchange Info')
 
@@ -85,6 +121,9 @@ with col2:
     st.table(conv_df_t)
     
     st.write('API JSON Response: ',data_ext)
+
+with col2:
+    st.markdown('')
 
 
 

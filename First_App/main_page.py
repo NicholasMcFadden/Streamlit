@@ -8,7 +8,7 @@ import numpy as np
 from helpers import flatten_json,load_lottiefile,load_lottieurl
 
 def main_page():
-    st.sidebar.markdown("# Main page 🎈")
+    st.sidebar.markdown("# Main 🛬")
     st.title("First Streamlit App")
 
     st.markdown('''
@@ -20,10 +20,21 @@ def main_page():
 
     st.markdown('''
                 I created this Streamlit app to showcase some of my Data Science projects
-                and deploy prototypes.
+                and ability deploy prototypes.\n
 
+                Enjoy exploring the projects listed on this app and the Streamlit app itself.\n
 
-                ''')
+                To find more information about me and other projects not showcased here; Take a look at these:\n
+                
+                LinkedIn:
+                GitHub:
+                                ''')
+    st.markdown('''## Searching for Job Opportunites 🔎''')
+
+    
+    link = '[Contact Me'] 
+    st.markdown('''Looking for opportunites in data and analytics.\n''')
+    st.markdown(link,unsafe_allow_html=True)
 
 if __name__ == '__main__':
     main_page()

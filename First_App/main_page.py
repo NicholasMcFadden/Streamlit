@@ -12,11 +12,18 @@ def main_page():
     st.title("First Streamlit App")
 
     st.markdown('''
-                Hi :wave ,\n
-                My name is Nicholas McFadden, welcome to my first Streamlit app! 
-    
+                Hi 👋, \n
+                My name is Nicholas McFadden. \n
+                #### From the BIG GUY and I, WELCOME to my first Streamlit app! 
                 ''')
+    st.image('media\\rio_christ.jpg',use_column_width=True)
 
+    st.markdown('''
+                I created this Streamlit app to showcase some of my Data Science projects
+                and deploy prototypes.
+
+
+                ''')
 
 if __name__ == '__main__':
     main_page()

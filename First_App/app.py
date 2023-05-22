@@ -36,11 +36,14 @@ def main():
 
                 st.subheader('Convert')
 
-                start_cur = st.selectbox('From: ', ['USD', 'EUR','GBP'])
+                cur_list = ['USD', 'EUR','GBP']
+
+
+                start_cur = st.selectbox('From: ', cur_list)
 
                 amount_base_cur = st.number_input('Amount: ',min_value=0)
 
-                end_cur = st.selectbox('To: ',['USD', 'EUR','GBP'])
+                end_cur = st.selectbox('To: ', cur_list[::-1])
     
             with col2:
 

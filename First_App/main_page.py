@@ -29,12 +29,11 @@ def main_page():
                 LinkedIn:
                 GitHub:
                                 ''')
+    
     st.markdown('''## Searching for Job Opportunites 🔎''')
 
-    
-    link = '[Contact Me'] 
     st.markdown('''Looking for opportunites in data and analytics.\n''')
-    st.markdown(link,unsafe_allow_html=True)
 
+   
 if __name__ == '__main__':
     main_page()

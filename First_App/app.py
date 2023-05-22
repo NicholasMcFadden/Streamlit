@@ -27,30 +27,29 @@ def main():
         with col1:
             st.subheader('Convert')
             st.title('Currency')
-            st.selectbox('Pick ', ['AS', 'dogs'])
+            start_cur = st.selectbox('From: ', ['USD', 'EUR','GBP'])
 
+            amount_base_cur = st.number_input('Amount: ',min_value=0)
+
+            end_cur = st.selectbox('To: ',['USD', 'EUR','GBP'])
         with col2:
-            st.subheader('Currency History')
+            st.subheader('Currency Exchange Info')
 
-         
+ 
 
-            # st.dataframe()
-
-            parameters = {"api_key":st.secrets["db_password"], "format": "json"}
+            parameters = {"api_key":st.secrets["db_password"], "format": "json",
+                          "from":start_cur,"to":end_cur,'amount':amount_base_cur}
 
             url = "https://api.getgeoapi.com/v2/currency/convert"
 
             response = requests.get(url, parameters)
 
             st.write(response.json())
-            
-            
+
+        
 
   
            
-
-
-
     else:
         st.subheader("Home")
 

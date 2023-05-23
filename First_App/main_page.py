@@ -12,10 +12,10 @@ def main_page():
     st.title("First Streamlit App")
 
     st.markdown('''
-                Hi 👋, \n
-                My name is Nicholas McFadden. \n
-                #### From the BIG GUY and I, WELCOME to my first Streamlit app! 
-                ''')
+                Hi 👋, \n''')
+
+    st.markdown("My name is Nicholas McFadden \n")
+    st.markdown('''##### From the BIG GUY and I, WELCOME to my first Streamlit app!''')
     st.image('media\\rio_christ.jpg',use_column_width=True)
 
     st.markdown('''
@@ -30,7 +30,7 @@ def main_page():
                 GitHub:
                                 ''')
     
-    st.markdown('''## Searching for Job Opportunites 🔎''')
+    st.markdown('''### Searching for Job Opportunites 🔎''')
 
     st.markdown('''Looking for opportunites in data and analytics.\n''')
 

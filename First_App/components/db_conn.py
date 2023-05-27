@@ -1,3 +1,6 @@
+# https://m-germanengineer.medium.com/tutorial-launch-saleable-streamlit-dashboards-aws-part-1-f7f5372e66e
+
+
 import streamlit as st
 import os
 
@@ -12,7 +15,6 @@ region_bucket=os.environ.get("REGION_BUCKET")
 
 
 
- 
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
     :param bucket_name: string
@@ -33,6 +35,10 @@ def create_presigned_url(bucket_name, object_name, expiration=3600):
     # The response contains the presigned URL
     return response
 
+
+
+
+
 def upload_to_aws(local_file, bucket, s3_file):
     s3 = boto3.client('s3', aws_access_key_id=S3_KEY,
                       aws_secret_access_key=S3_SECRET)
@@ -45,8 +51,3 @@ def upload_to_aws(local_file, bucket, s3_file):
         print("The file was not found")
         return False
 
-
-url = create_presigned_url('tutorialbucketstreamlit', 'AAPL.csv')
-
-if url is not None:
-    response = requests.get(url)

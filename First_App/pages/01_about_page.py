@@ -3,12 +3,21 @@ import requests
 import json
 from streamlit_lottie import st_lottie
 import helpers
+import components.authenticate as authenticate
 
+# Check authentication when user lands on the page.
+authenticate.set_st_state_vars()
 
 def about_page():
 
     st.sidebar.markdown("# About 🚀💻")
     st.markdown("# About 🚀💻")
+
+      # Add login/logout buttons
+    if st.session_state["authenticated"]:
+        authenticate.button_logout()
+    else:
+        authenticate.button_login()
 
     st.image('media\st_teresa_cafe.jpg', width=400)
 

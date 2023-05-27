@@ -10,7 +10,7 @@ def about_page():
     st.sidebar.markdown("# About 🚀💻")
     st.markdown("# About 🚀💻")
 
-    st.image('media\st_teresa_cafe.jpg',use_column_width=True)
+    st.image('media\st_teresa_cafe.jpg', width=400)
 
     st.title('Seeking Data Science/Analtyics opportunities')
     st.markdown('''
@@ -48,7 +48,7 @@ def about_page():
 
     st.markdown('''But go figure....\n''')
     
-    st.image('media\pico_malwee.jpg',use_column_width=True)
+    st.image('media\pico_malwee.jpg',width=500)
 
     st.markdown('''
                 They wouldn't let me double major without paying for two degrees soooo.....the Certificate of Advanced Study(CAS) in Data Science is a fair consolation 😂!

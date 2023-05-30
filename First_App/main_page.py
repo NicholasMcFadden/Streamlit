@@ -68,7 +68,7 @@ from botocore.exceptions import ClientError
 
 
 # Check authentication when user lands on the page.
-authenticate.set_st_state_vars()
+# authenticate.set_st_state_vars()
 
 
 def main_page():
@@ -78,11 +78,11 @@ def main_page():
     st.sidebar.markdown("# Main 🛬")
     st.sidebar.title('')
 
-    # Add login/logout buttons
-    if st.session_state["authenticated"]:
-        authenticate.button_logout()
-    else:
-        authenticate.button_login()
+    # # Add login/logout buttons
+    # if st.session_state["authenticated"]:
+    #     authenticate.button_logout()
+    # else:
+    #     authenticate.button_login()
 
 
     st.title("Hi 👋,")

@@ -7,7 +7,7 @@ from helpers import flatten_json,load_lottiefile,load_lottieurl
 import components.authenticate as authenticate
 
 # Check authentication when user lands on the page.
-authenticate.set_st_state_vars()
+# authenticate.set_st_state_vars()
 
 def currency_converter_app():
 
@@ -15,145 +15,143 @@ def currency_converter_app():
     st.sidebar.title('')
 
     # Restrict certain user groups acess to subset of pages
-    if st.session_state["authenticated"] and "setup-user-pool" in st.session_state["user_cognito_groups"]:
-        # Show the below Streamlit code
+    # if st.session_state["authenticated"] and "setup-user-pool" in st.session_state["user_cognito_groups"]:
+    #     # Show the below Streamlit code
 
-         # Add login/logout buttons
-        authenticate.button_logout()
-
-
-        st.write(
-            """This demo illustrates a combination of plotting and animation with
-        Streamlit. Enjoy!"""
-        )
+    #      # Add login/logout buttons
+    #     authenticate.button_logout()
 
 
-        lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
-
-        st_lottie(lottie_file,
-                speed=.95,
-                reverse=False,
-                loop=True,
-                quality="low",
-                height=225,
-                width=None,
-                key=None,
-                )                            
+    st.write(
+        """This demo illustrates a combination of plotting and animation with
+    Streamlit. Enjoy!"""
+    )
 
 
-        # lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
+    lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
 
-        # st_lottie(lottie_url,
-        #           speed=.95,
-        #           reverse=False,
-        #           loop=True,
-        #           quality="low",
-        #           height=225,
-        #           width=None,
-        #           key=None,
-        #           )
-
-        st.title('Currency Converter')
-
-        st.write('''Currency Conversion Rates from Currency API: 
-                https://currency.getgeoapi.com/''')
+    st_lottie(lottie_file,
+            speed=.95,
+            reverse=False,
+            loop=True,
+            quality="low",
+            height=225,
+            width=None,
+            key=None,
+            )                            
 
 
+    # lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
 
-        col1,col2,col3 = st.columns([3,1,6])
-        with col1:
+    # st_lottie(lottie_url,
+    #           speed=.95,
+    #           reverse=False,
+    #           loop=True,
+    #           quality="low",
+    #           height=225,
+    #           width=None,
+    #           key=None,
+    #           )
 
-            st.subheader('Convert')
+    st.title('Currency Converter')
 
-            parameters = {"api_key":st.secrets["db_password"], "format": "json"}
+    st.write('''Currency Conversion Rates from Currency API: 
+            https://currency.getgeoapi.com/''')
 
-            url = "https://api.getgeoapi.com/v2/currency/list"
 
-            response = requests.get(url, parameters)
 
-            data_list = response.json()
+    col1,col2,col3 = st.columns([3,1,6])
+    with col1:
 
-            cur_list = data_list['currencies']
+        st.subheader('Convert')
 
-            start_cur = st.selectbox('From (Type to Search): ',cur_list.values())
+        parameters = {"api_key":st.secrets["geoapi_key"], "format": "json"}
 
-            start_pos = [key for key, val in cur_list.items() if val == start_cur]
-            
-            if len(start_pos) > 0:
-                print("The key for the value", start_cur, "is", start_pos[0])
-            else:
-                print("Value not found in dictionary")
+        url = "https://api.getgeoapi.com/v2/currency/list"
 
-            amount_base_cur = st.number_input('Amount: ',min_value=0)
+        response = requests.get(url, parameters)
 
-            end_cur = st.selectbox('To: (Type to Search)', cur_list.values())
+        data_list = response.json()
 
-            end_pos = [key for key, val in cur_list.items() if val == end_cur]
-            
-            st.markdown('##\n##')
+        cur_list = data_list['currencies']
 
-            # lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
+        start_cur = st.selectbox('From (Type to Search): ',cur_list.values())
 
-            # st_lottie(lottie_file,
-            #       speed=.95,
-            #       reverse=False,
-            #       loop=True,
-            #       quality="low",
-            #       height=225,
-            #       width=None,
-            #       key=None,
-            #       ) 
-            lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
-
+        start_pos = [key for key, val in cur_list.items() if val == start_cur]
         
-
-            st_lottie(lottie_url,
-                speed=.95,
-                reverse=False,
-                loop=True,
-                quality="low",
-                height=225,
-                width=None,
-                key=None,
-                )                           
-
-        with col3:
-
-            st.subheader('Currency Exchange Info')
-
-            parameters = {"api_key":st.secrets["db_password"], "format": "json",
-                        "from":start_pos[0],"to":end_pos[0],'amount':amount_base_cur}
-
-            url = "https://api.getgeoapi.com/v2/currency/convert"
-
-            response = requests.get(url, parameters)
-
-            data_ext = response.json()
-
-            # st.write(data_ext)
-
-            flat_data = flatten_json(data_ext)
-
-            conv_df = pd.DataFrame(flat_data,columns=flat_data.keys(),index=['API Response:'])
-
-            conv_df_t = conv_df.transpose()
-
-            st.table(conv_df_t)
-            
-            st.write('API JSON Response: ',data_ext)
-
-        with col2:
-            st.markdown('')
-
-    else:
-        if st.session_state["authenticated"]:
-             # Add login/logout buttons
-            authenticate.button_logout()
-            st.write("You do not have access. Please contact the administrator.")
+        if len(start_pos) > 0:
+            print("The key for the value", start_cur, "is", start_pos[0])
         else:
-            st.write("Please login!")
-             # Add login/logout buttons
-            authenticate.button_login()
+            print("Value not found in dictionary")
+
+        amount_base_cur = st.number_input('Amount: ',min_value=0)
+
+        end_cur = st.selectbox('To: (Type to Search)', cur_list.values())
+
+        end_pos = [key for key, val in cur_list.items() if val == end_cur]
+        
+        st.markdown('##\n##')
+
+        # lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
+
+        # st_lottie(lottie_file,
+        #       speed=.95,
+        #       reverse=False,
+        #       loop=True,
+        #       quality="low",
+        #       height=225,
+        #       width=None,
+        #       key=None,
+        #       ) 
+        lottie_url = load_lottieurl('https://assets7.lottiefiles.com/packages/lf20_ikaawl5v.json')
+
+    
+
+        st_lottie(lottie_url,
+            speed=.95,
+            reverse=False,
+            loop=True,
+            quality="low",
+            height=225,
+            width=None,
+            key=None,
+            )                           
+
+    with col3:
+
+        st.subheader('Currency Exchange Info')
+
+        parameters = {"api_key":st.secrets["geoapi_key"], "format": "json",
+                    "from":start_pos[0],"to":end_pos[0],'amount':amount_base_cur}
+
+        url = "https://api.getgeoapi.com/v2/currency/convert"
+
+        response = requests.get(url, parameters)
+
+        data_ext = response.json()
+
+        # st.write(data_ext)
+
+        flat_data = flatten_json(data_ext)
+
+        conv_df = pd.DataFrame(flat_data,columns=flat_data.keys(),index=['API Response:'])
+
+        conv_df_t = conv_df.transpose()
+
+        st.table(conv_df_t)
+        
+        st.write('API JSON Response: ',data_ext)
+
+    with col2:
+        st.markdown('')
+
+    # else:
+    #    ?
+    #         st.write("You do not have access. Please contact the administrator.")
+    #     else:
+    #         st.write("Please login!")
+    #         #  # Add login/logout buttons
+    #         # authenticate.button_login()
 
 
 

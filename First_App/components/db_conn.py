@@ -15,6 +15,7 @@ region_bucket=os.environ.get("REGION_BUCKET")
 
 
 
+
 def create_presigned_url(bucket_name, object_name, expiration=3600):
     """Generate a presigned URL to share an S3 object
     :param bucket_name: string

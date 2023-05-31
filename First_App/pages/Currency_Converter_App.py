@@ -4,10 +4,29 @@ import requests
 import pandas as pd
 import numpy as np
 from helpers import flatten_json,load_lottiefile,load_lottieurl
+import components.authenticate as authenticate
+
+# Check authentication when user lands on the page.
+# authenticate.set_st_state_vars()
 
 def currency_converter_app():
 
     st.sidebar.markdown("# Currency 💱")
+    st.sidebar.title('')
+
+    # Restrict certain user groups acess to subset of pages
+    # if st.session_state["authenticated"] and "setup-user-pool" in st.session_state["user_cognito_groups"]:
+    #     # Show the below Streamlit code
+
+    #      # Add login/logout buttons
+    #     authenticate.button_logout()
+
+
+    st.write(
+        """This demo illustrates a combination of plotting and animation with
+    Streamlit. Enjoy!"""
+    )
+
 
     lottie_file = load_lottiefile('media\cur_exchange_lottie.json')
 
@@ -46,7 +65,7 @@ def currency_converter_app():
 
         st.subheader('Convert')
 
-        parameters = {"api_key":st.secrets["db_password"], "format": "json"}
+        parameters = {"api_key":st.secrets["geoapi_key"], "format": "json"}
 
         url = "https://api.getgeoapi.com/v2/currency/list"
 
@@ -102,7 +121,7 @@ def currency_converter_app():
 
         st.subheader('Currency Exchange Info')
 
-        parameters = {"api_key":st.secrets["db_password"], "format": "json",
+        parameters = {"api_key":st.secrets["geoapi_key"], "format": "json",
                     "from":start_pos[0],"to":end_pos[0],'amount':amount_base_cur}
 
         url = "https://api.getgeoapi.com/v2/currency/convert"
@@ -125,6 +144,16 @@ def currency_converter_app():
 
     with col2:
         st.markdown('')
+
+    # else:
+    #    ?
+    #         st.write("You do not have access. Please contact the administrator.")
+    #     else:
+    #         st.write("Please login!")
+    #         #  # Add login/logout buttons
+    #         # authenticate.button_login()
+
+
 
 if __name__=='__main__':
     currency_converter_app()
